@@ -54,15 +54,15 @@ class ZonkHandHistory(Observable):
         return self.dice_set.dice                     #Returna self.dice_set.dice
 
 
-class SaveZonkHand(Observer):
+class SaveZonkHand(Observer):                           # nueva clase que hereda de observer
     def __init__(self, hand: ZonkHandHistory) -> None:
-        self.hand = hand
-        self.count = 0
+        self.hand = hand                                
+        self.count = 0                                  #inicializa count en 0
 
-    def __call__(self) -> None:
-        self.count += 1
+    def __call__(self) -> None:                         #Se hace overloading al metodo privado ya inicializado en obsever
+        self.count += 1                                 #
         message = {
-            "player": self.hand.player,
+            "player": self.hand.player, 
             "sequence": self.count,
             "hands": json.dumps(self.hand.rolls),
             "time": time.time(),
@@ -70,12 +70,12 @@ class SaveZonkHand(Observer):
         print(f"SaveZonkHand {message}")
 
 
-class ThreePairZonkHand:
+class ThreePairZonkHand:                        
     """Observer of ZonkHandHistory"""
-
+    #constructir
     def __init__(self, hand: ZonkHandHistory) -> None:
-        self.hand = hand
-        self.zonked = False
+        self.hand = hand                                #Se guarda como parametro en un atributo hand el objeto de tipo ZonkHandHistory
+        self.zonked = False                             #Se inicializa el atributo zonked como falso
 
     def __call__(self) -> None:
         last_roll = self.hand.rolls[-1]
