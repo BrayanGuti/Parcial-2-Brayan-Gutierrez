@@ -1,5 +1,5 @@
-from Parking_clases import Parking
-from Carro import Carro
+from Package.Parking_clases import Parking
+from Package.Carro import Carro
 
 #Se crean los autos que ingresan
 Carro1 = Carro(tipo= "van", horas=1 , dias= 0, min= 0, hora_entrada=10.00, reserva= False)
